@@ -1,26 +1,36 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+//import logo from './papa_gully.jpeg';
 import './App.css';
+import { Zoom } from 'react-slideshow-image';
 
-function App() {
+const images = [
+  '/slide_2.jpg',
+  '/slide_3.jpg',
+  '/slide_4.jpg'
+];
+
+const zoomOutProperties = {
+  duration: 5000,
+  transitionDuration: 500,
+  infinite: true,
+  indicators: true,
+  scale: 0.4,
+  arrows: true
+}
+
+
+class App extends Component{
+  render() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    <div className="slide-container">
+        <Zoom {...zoomOutProperties}>
+          {
+            images.map((each, index) => <img key={index} style={{width: "100%"}} src={each} />)
+          }
+        </Zoom>
+      </div>
+  )
+  }
 }
 
 export default App;
